@@ -1,0 +1,773 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Biko;
+  src: url(../assert/font/Biko_Black.otf);
+}
+
+@font-face {
+  font-family: Biko-regular;
+  src: url(../assert/font/Biko_Regular.otf);
+}
+
+$gray: #676767;
+$blue-color: #0864b1;
+$white-color: #fff;
+$section-title-font-size: 50px;
+
+@mixin section-title {
+  margin-bottom: 80px;
+  color: $blue-color;
+  font-size: $section-title-font-size;
+  font-family: Biko;
+  text-align: center;
+  position: relative;
+}
+
+@mixin footer-grid {
+  color: $white-color;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+@mixin section-title-after {
+  content: "";
+  height: 8px;
+  width: 200px;
+  background-color: #676767;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: -15px;
+}
+
+.header {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  justify-content: space-between;
+  padding: 30px 70px;
+  font-family: Biko-regular;
+  align-items: center;
+  z-index: 2;
+  
+  background: linear-gradient(180deg, #2a2757 40%, #0865b13d 100%);
+
+  .logo-outer {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .logo {
+      font-size: 45px;
+      font-weight: 600;
+      color: $white-color;
+    }
+
+    .select-menu {
+      width: 80px;
+      position: absolute;
+      right: -100px;
+      top: 20px;
+    }
+    .select-menu .select-btn {
+      display: flex;
+      color: white;
+      padding: 5px 7px;
+      font-size: 13px;
+      font-weight: 400;
+      border-radius: 8px;
+      align-items: center;
+      cursor: pointer;
+      justify-content: space-between;
+      box-shadow: 0 0 5px #0000001a;
+    }
+    .select-btn i {
+      font-size: 25px;
+      transition: 0.3s;
+    }
+
+    .select-menu .options {
+      position: relative;
+
+      margin-top: 10px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+    .select-menu.active .options {
+      display: block;
+    }
+    .options .option {
+      display: flex;
+      cursor: pointer;
+      padding: 0 16px;
+      align-items: center;
+      background: #fff;
+    }
+    .options .option:hover {
+      background: #f2f2f2;
+    }
+
+    .option .option-text {
+      font-size: 13px;
+      color: #333;
+    }
+  }
+}
+
+.nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+
+  li {
+    list-style: none;
+    margin-left: 50px;
+    font-size: 30px;
+
+    a {
+      text-decoration: none;
+      color: $white-color;
+    }
+  }
+}
+
+.nav ul li:nth-child(4) {
+  display: none;
+}
+
+.nav ul li:nth-child(5) {
+  display: none;
+}
+
+.side-nav {
+  display: none;
+  right: -200px;
+  transition: 0.5s;
+  position: fixed;
+  padding: 40px 0 0 40px;
+  top: 0;
+  right: 0;
+  width: 0;
+  z-index: 10;
+  border-left: 2px solid $white-color;
+  transition: 0.5s;
+
+  ul li:nth-child(2) {
+    display: none;
+  }
+
+  ul li:nth-child(3) {
+    display: none;
+  }
+
+  ul li:nth-child(4) {
+    display: none;
+  }
+}
+
+.side-nav.active {
+  background-color: #0865b19f;
+  backdrop-filter: blur(7px);
+  z-index: 1;
+  display: block;
+  width: 300px;
+  height: 100%;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      font-size: 30px;
+
+      a {
+        text-decoration: none;
+        color: $white-color;
+      }
+    }
+  }
+}
+
+.image {
+  height: 1000px;
+  background-size: cover;
+  background-image: url("../assert/image/HeroBackgroundShape.svg");
+  background-repeat: no-repeat;
+  color: $white-color;
+  padding: 200px 100px 0;
+}
+
+.home-layout {
+  height: 1000px;
+  background-size: cover;
+  background-image: url("../assert/image/Hero\ Banner.png");
+
+  background-repeat: no-repeat;
+
+  .title {
+    font-weight: 800;
+    font-size: 100px;
+  }
+
+  .description {
+    font-size: 35px;
+    max-width: 1000px;
+  }
+}
+
+.about-us {
+  margin: 0 100px;
+  padding-top: 70px;
+
+  .about-us-title {
+    @include section-title;
+  }
+
+  .about-us-title::after {
+    @include section-title-after;
+  }
+
+  .about-us-description {
+    font-family: Biko-regular;
+    text-align: center;
+    color: $gray;
+    font-size: 35px;
+    line-height: 1.6;
+  }
+}
+
+.latest-news {
+  padding-top: 70px;
+
+  .latest-news-title {
+    @include section-title;
+  }
+
+  .latest-news-title::after {
+    @include section-title-after;
+  }
+
+  .latest-news-slider-card-outer {
+    padding: 0 70px;
+    font-family: Biko-regular;
+  }
+
+  .swiper-wrapper {
+    padding-bottom: 30px;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-container-horizontal > .swiper-pagination-bullets,
+  .swiper-pagination-custom,
+  .swiper-pagination-fraction {
+    bottom: 0px !important;
+  }
+
+  .swiper-pagination-bullet {
+    width: 50px;
+    height: 6px;
+    border-radius: 0;
+  }
+
+  .latest-news-slider-card {
+    max-width: 450px;
+    margin: 10px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
+  }
+
+  .latest-news-slider-img img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .latest-news-slider-description {
+    padding: 30px;
+
+    p {
+      font-size: 20px;
+      text-align: left;
+    }
+
+    .latest-news-slider-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .latest-news-slider-footer-read {
+        font-size: 20px;
+        margin-right: 20px;
+        color: $blue-color;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.testimonials {
+  padding-top: 70px;
+
+  .testimonials-title {
+    @include section-title;
+  }
+
+  .testimonials-title::after {
+    @include section-title-after;
+  }
+
+  .testimonials-slider-outer {
+    padding: 0 70px;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 100px;
+    font-size: 30px;
+    font-family: Biko-regular;
+    color: $gray;
+  }
+
+  .testimonials-status {
+    position: relative;
+    padding-top: 20px;
+  }
+
+  .testimonials-status::before {
+    content: "";
+    height: 40px;
+    width: 40px;
+    background: url("../assert/image/quote-right-Icon.svg") no-repeat;
+    position: absolute;
+    right: -20px;
+    top: 0px;
+    z-index: 5;
+  }
+
+  .testimonials-status::after {
+    content: "";
+    height: 40px;
+    width: 40px;
+    background: url("../assert/image/quote-right-Icon.svg") no-repeat;
+    position: absolute;
+    left: -20px;
+    bottom: 0px;
+    z-index: 5;
+    rotate: 180deg;
+  }
+
+  .author {
+    font-weight: 700;
+    color: $blue-color;
+  }
+}
+
+.contact-us {
+  padding-top: 70px;
+
+  .contact-us-title {
+    @include section-title;
+  }
+
+  .contact-us-title::after {
+    @include section-title-after;
+  }
+  .map {
+    height: 600px;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.footer {
+  background-color: $blue-color;
+  padding: 50px 70px;
+  font-family: biko-regular;
+
+  .footer-top {
+    color: $white-color;
+    margin-bottom: 80px;
+
+    .footer-top-left {
+      .footer-logo {
+        font-size: 34px;
+        font-weight: 600;
+      }
+
+      .footer-address {
+        font-size: 18px;
+        padding-top: 15px;
+      }
+    }
+
+    .footer-top-right {
+      .social-icon-title {
+        font-size: 30px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .social-icon-outer ul {
+        margin: 0;
+        padding: 0;
+
+        display: flex;
+
+        li {
+          list-style: none;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    color: $white-color;
+
+    .copyright-text {
+      font-size: 25px;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .publish-date {
+      font-size: 22px;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .side-nav {
+    ul li:nth-child(4) {
+      display: block;
+    }
+  }
+  .nav {
+    ul li:nth-child(3) {
+      display: none;
+    }
+  }
+
+  .home-layout {
+    .image {
+      .title {
+        font-size: 60px;
+      }
+
+      .description {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  .side-nav {
+    ul li:nth-child(3) {
+      display: block;
+    }
+  }
+  .nav {
+    ul li:nth-child(2) {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .side-nav {
+    ul li:nth-child(2) {
+      display: block;
+    }
+  }
+  .nav {
+    ul li:nth-child(1) {
+      display: none;
+    }
+  }
+
+  .home-layout {
+    height: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 30px ;
+
+    .logo-outer {
+      .logo {
+        font-size: 30px;
+      }
+
+      .select-menu {
+        width: 80px;
+        right: -80px;
+        top: 10px;
+      }
+    }
+  }
+  .home-layout {
+    height:500px;
+    .image {
+      padding: 150px 30px 0;
+      height:500px;
+
+      .title{
+        font-size: 40px;
+      }
+
+      .description{
+        width: 400px;
+      }
+    }
+  }
+
+
+
+  .latest-news{
+
+    .latest-news-title {
+      font-size: 40px;
+    }
+    .latest-news-title::after {
+      height: 5px;
+      width: 150px;
+    }
+    .latest-news-slider-card-outer {
+      padding: 0 30px;
+    }
+    .latest-news-slider-description p {
+      font-size: 18px;
+    }
+
+    .latest-news-slider-description {
+      padding: 18px;
+    }
+  } 
+
+  .testimonials {
+    .testimonials-title {
+      font-size: 40px;
+    }
+
+    .testimonials-title::after{
+      height: 5px;
+      width: 150px;
+    }
+    .testimonials-slider-outer {
+      padding: 0 30px;
+    }
+
+    .swiper-slide {
+      
+      padding: 0 20px;
+      font-size: 16px;
+      font-family: Biko-regular;
+      color: $gray;
+    }
+
+    .testimonials-status{
+      font-size: 18px;
+    }
+
+   
+  }
+
+  .contact-us{
+    .contact-us-title{
+      font-size: 40px;
+    }
+
+    .contact-us-title::after{
+      height: 5px;
+      width: 150px;
+    }
+
+    .map{
+      height: 400px;
+    }
+  }
+
+  .about-us {
+    margin: 0 30px;
+    .about-us-title {
+      font-size: 40px;
+    }
+
+    .about-us-title::after {
+      height: 5px;
+      width: 150px;
+    }
+    .about-us-description {
+      font-size: 18px;
+    }
+  }
+
+  .footer{
+    .footer-top{
+      margin-bottom: 20px;
+      .footer-top-left{
+        margin-bottom: 20px;
+      }
+
+      .footer-top-right{
+        .social-icon-title{
+          font-size: 24px;
+        }
+      }
+    }
+
+    .footer-bottom{
+      .copyright-text{
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 426px) {
+  .header {
+    padding: 30px 20px;
+
+    .logo-outer {
+      .logo {
+        font-size: 24px;
+      }
+
+      .select-menu {
+        
+        right: -80px;
+        top: 0;
+      }
+    }
+  }
+
+  .home-layout {
+    .image {
+      padding: 150px 20px 0;
+
+      .title{
+        font-size: 30px;
+      }
+
+      .description{
+        width: 280px;
+      }
+    }
+  }
+  .latest-news{
+
+    .latest-news-title {
+      font-size: 30px;
+    }
+    .latest-news-title::after {
+      height: 4px;
+      width: 100px;
+    }
+    .latest-news-slider-card-outer {
+      padding: 0 20px;
+    }
+    .latest-news-slider-description p {
+      font-size: 16px;
+    }
+
+    .latest-news-slider-description {
+      padding: 10px;
+    }
+  } 
+
+   .contact-us{
+    .contact-us-title{
+      font-size: 30px;
+    }
+
+    .contact-us-title::after{
+      height: 4px;
+      width: 100px;
+    }
+   }
+
+   
+
+  .about-us {
+    margin: 0 20px;
+    .about-us-title {
+      font-size: 30px;
+    }
+
+    .about-us-title::after {
+      height: 4px;
+      width: 100px;
+    }
+    .about-us-description {
+      font-size: 16px;
+    }
+  }
+
+ 
+
+  .testimonials {
+    .testimonials-title {
+      font-size: 30px;
+    }
+
+    .testimonials-title::after{
+      height: 4px;
+      width: 100px;
+    }
+    .testimonials-slider-outer {
+      padding: 0 20px;
+    }
+
+    .swiper-slide {
+      
+      padding: 0 20px;
+      font-size: 16px;
+      font-family: Biko-regular;
+      color: $gray;
+    }
+
+   
+  }
+
+  .footer {
+    padding: 50px 20px;
+  }
+}
